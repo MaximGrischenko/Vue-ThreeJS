@@ -118,6 +118,10 @@
         this.scene.children = this.scene.children.filter(child => child.uuid !== uuid);
         this.$emit('clear', (uuid));
       });
+      EventBus.$on("scale", (uuid, scale) => {
+        const mesh = this.scene.children.filter(child => child.uuid === uuid);
+        mesh[0].scale.set(scale, scale, scale);
+      });
     },
     mounted() {
       window.addEventListener('resize', this.handleWindowResize);
