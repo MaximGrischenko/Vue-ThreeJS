@@ -34,7 +34,7 @@
       init: function() {
         this.camera = new Three.PerspectiveCamera(70, this.$refs.el.clientWidth/this.$refs.el.clientHeight, 0.01, 1000);
         this.camera.position.z = 15;
-        this.controls = new OrbitControls( this.camera, this.el );
+        this.controls = new OrbitControls( this.camera, this.$refs.el );
 
         this.scene = new Three.Scene();
 
