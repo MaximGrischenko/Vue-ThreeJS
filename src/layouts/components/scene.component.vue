@@ -4,6 +4,7 @@
 
 <script>
   import * as Three from 'three';
+  import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
   import { EventBus } from "../../main";
 
   export default {
@@ -14,6 +15,7 @@
         scene: null,
         renderer: null,
         requestAF: null,
+        controls: null,
         coordinates: {
           x: -6,
           y: 2
@@ -32,6 +34,7 @@
       init: function() {
         this.camera = new Three.PerspectiveCamera(70, this.$refs.el.clientWidth/this.$refs.el.clientHeight, 0.01, 1000);
         this.camera.position.z = 15;
+        this.controls = new OrbitControls( this.camera, this.el );
 
         this.scene = new Three.Scene();
 
@@ -124,6 +127,7 @@
     destroyed() {
       window.removeEventListener('resize', this.handleWindowResize);
       cancelAnimationFrame(this.requestAF);
+      this.controls.dispose();
     }
   }
 </script>
